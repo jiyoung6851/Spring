@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- namespace는 BoardDAO경로(경로.BoardDAO) -->
+<mapper namespace="com.lgy.item_std_oracle.dao.ItemDAO">
+   
+    <select id="list" resultType="com.lgy.item_std_oracle.dto.ItemDTO">
+        select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from tbl_board
+    </select>
+   
+    <insert id="write">
+        insert into tbl_board(boardName, boardTitle, boardContent, boardHit) values(#{param1},#{param2},#{param3},0)
+    </insert>
+
+</mapper>

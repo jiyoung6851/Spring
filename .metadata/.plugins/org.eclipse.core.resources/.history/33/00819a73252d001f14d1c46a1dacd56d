@@ -1,0 +1,12 @@
+package com.lgy.member_oracle.service;
+
+import org.springframework.ui.Model;
+
+public class MemLoginService implements MemService{
+
+	@Override
+	public void execute(Model model) {
+		
+	}
+	
+}

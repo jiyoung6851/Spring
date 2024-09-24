@@ -1,0 +1,20 @@
+package com.lgy.item_oracle.dao;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class ItemDAO {
+	DataSource dataSource;
+	
+	public ItemDAO() {
+		try {
+			Context ctx = new InitialContext();
+			dataSource = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+
+	}
+}

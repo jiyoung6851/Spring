@@ -1,0 +1,5 @@
+package com.lgy.board_mysql.service;
+
+public class BoardContentService implements BoardService{
+	
+}

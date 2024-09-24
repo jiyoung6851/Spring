@@ -1,0 +1,8 @@
+package com.lgy.spring_14_1;
+
+public class Snippet {
+	public static void main(String[] args) {
+		UserController
+	}
+}
+

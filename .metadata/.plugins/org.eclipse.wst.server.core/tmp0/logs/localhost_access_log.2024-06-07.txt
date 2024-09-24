@@ -1,0 +1,4 @@
+127.0.0.1 - - [07/Jun/2024:12:43:26 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [07/Jun/2024:12:43:27 +0900] "GET /spring_test/WEB-INF/classes/com/lgy/spring_test/HomeController.java HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [07/Jun/2024:12:43:33 +0900] "GET /spring_test HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [07/Jun/2024:12:43:34 +0900] "GET /spring_test/ HTTP/1.1" 200 164

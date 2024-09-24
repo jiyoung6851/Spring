@@ -1,0 +1,40 @@
+package com.lgy.member_oracle.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.lgy.member_oracle.service.MemLoginService;
+import com.lgy.member_oracle.service.MemService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@Slf4j
+public class MemController {
+	private MemService memService;
+
+    public MemController() {
+        memService = new MemLoginService();
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/login_check")
+    public String loginCheck(HttpServletRequest request, HttpServletResponse response, Model model) {
+        model.addAttribute("request", request);
+        int result = memService.userCheck(model);
+
+        if (result == 1) {
+            return "login_ok";
+        } else {
+            return "login";
+        }
+    }
+}

@@ -1,0 +1,12 @@
+package com.lgy.board_mysql.service;
+
+import org.springframework.ui.Model;
+
+public class BoardModifyService implements BoardService{
+
+	@Override
+	public void execute(Model model) {
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.lgy.board_mysql.dto;
+
+public class BoardDTO {
+
+}

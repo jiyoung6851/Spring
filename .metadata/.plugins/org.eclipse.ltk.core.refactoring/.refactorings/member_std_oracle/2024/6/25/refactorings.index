@@ -1,0 +1,7 @@
+1718932677277	Delete element
+1718933011725	Move 'MemDAO.java' to 'dao'
+1718935515824	Rename resource 'MemDAO.xml'
+1718935527192	Rename type 'MemDAO'
+1718935611760	Rename type 'IMemDAO'
+1718935617176	Rename resource 'IMemDAO.xml'
+1718935941240	Rename type 'MemServicelmpl'

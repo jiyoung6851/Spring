@@ -1,0 +1,50 @@
+package com.lgy.item_oracle.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class ItemDAO {
+	DataSource dataSource;
+	
+	public ItemDAO() {
+		try {
+			Context ctx = new InitialContext();
+			dataSource = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void write(String name, int price, String description) {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into item(name, price, description) values(?,?,?)";
+		
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, boardName);
+			pstmt.setString(2, boardTitle);
+			pstmt.setString(3, boardContent);
+			
+			pstmt.executeUpdate();	
+		} catch(Exception ex){
+		 	ex.printStackTrace();
+		} finally{
+			try {
+				if(pstmt != null) {pstmt.close();}
+				if(conn != null) {conn.close();}
+			}
+			catch (Exception se){
+				se.printStackTrace();
+			}
+		}
+	
+	}
+}

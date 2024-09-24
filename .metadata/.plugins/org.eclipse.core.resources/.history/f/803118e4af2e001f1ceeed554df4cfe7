@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- namespace는 BoardDAO경로(경로.BoardDAO) -->
+<mapper namespace="com.lgy.member_mybatis_oracle.dao.MemDAO">
+   
+	<!-- id는 (DAO)메소드 명, resultType은 DTO경로(경로.BoardDTO) -->
+    <select id="list" resultType="com.lgy.member_mybatis_oracle.dao.MemDTO">
+		<!-- select 안에는 쿼리 -->
+        select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from tbl_board
+    </select>
+   
+    <insert id="write">
+		<!-- 쿼리안에 ?대신 #{param1} 사용 -->
+        insert into tbl_board(boardName, boardTitle, boardContent, boardHit) values(#{param1},#{param2},#{param3},0)
+    </insert>
+   
+    <select id="contentView" resultType="com.lgy.board_mybatis_mysql.dto.BoardDTO">
+        select boardNo, boardName, boardTitle, boardContent, boardDate, boardHit from tbl_board where boardNo=#{param1}
+    </select>
+    
+<!--         update tbl_board set boardName=#{param1}, boardTitle=#{param2}, boardContent=#{param3} where boardNo=#{param4} -->
+    <update id="modify">
+        update tbl_board set boardName=#{param2}, boardTitle=#{param3}, boardContent=#{param4} where boardNo=#{param1}
+    </update>
+    
+    <delete id="delete">
+    	delete from tbl_board where boardNo=#{param1}
+    </delete>
+
+</mapper>

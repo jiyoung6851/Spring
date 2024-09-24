@@ -1,0 +1,15 @@
+package com.lgy.board_mysql.service;
+
+import java.util.Map;
+
+import org.springframework.ui.Model;
+
+//게시글 저장
+public class BoardWriteService implements BoardService{
+
+	@Override
+	public void execute(Model model) {
+		Map<String, Object> model.asMap();
+	}
+	
+}

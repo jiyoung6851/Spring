@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- namespace는 BoardDAO경로(경로.BoardDAO) -->
+<mapper namespace="com.lgy.member_mybatis_oracle.dao.MemDAO">
+   
+	<!-- id는 (DAO)메소드 명, resultType은 DTO경로(경로.BoardDTO) -->
+    <select id="loginYn" resultType="com.lgy.member_mybatis_oracle.dao.MemDTO">
+		<!-- select 안에는 쿼리 -->
+        select mem_pw from mvc_member where mem_uid=#{param1}
+    </select>
+   
+    <insert id="write">
+		<!-- 쿼리안에 ?대신 #{param1} 사용 -->
+        insert into mvc_member(mem_uid, mem_pw, mem_name) values(#{param1},#{param2},#{param3})
+    </insert>
+
+
+</mapper>

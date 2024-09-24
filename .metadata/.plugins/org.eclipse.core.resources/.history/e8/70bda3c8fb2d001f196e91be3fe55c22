@@ -1,0 +1,5 @@
+package com.lgy.member_jdbc_oracle.service;
+
+public class MWriteService {
+
+}

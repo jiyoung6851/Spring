@@ -1,0 +1,70 @@
+package com.lgy.spring_14_1;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.lgy.spring_14_1.domain.UserVO;
+
+@RestController
+public class UserController {
+    private Map<String, UserVO> userMap;
+
+    @PostConstruct
+    public void init() {
+        userMap = new HashMap<>();
+        userMap.put("1", new UserVO("1", "홍길동", "111-1111", "서울"));
+        userMap.put("2", new UserVO("2", "홍길자", "111-2222", "부산"));
+        userMap.put("3", new UserVO("3", "홍길순", "111-3333", "대구"));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserVO> getUser(@PathVariable("id") String id) {
+        UserVO user = userMap.get(id);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/all")
+    public ResponseEntity<List<UserVO>> getAllUsers() {
+        return new ResponseEntity<>(new ArrayList<>(userMap.values()), HttpStatus.OK);
+    }
+
+    @PostMapping("/user/{id}")
+    public ResponseEntity<UserVO> postUser(@PathVariable("id") String id, 
+                                           @RequestParam("name") String name,
+                                           @RequestParam("phone") String phone, 
+                                           @RequestParam("address") String address) {
+        UserVO userVO = new UserVO(id, name, phone, address);
+        userMap.put(id, userVO);
+        return new ResponseEntity<>(userVO, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/user/{id}")
+    public ResponseEntity<UserVO> putUser(@PathVariable("id") String id, 
+                                          @RequestParam("name") String name,
+                                          @RequestParam("phone") String phone, 
+                                          @RequestParam("address") String address) {
+        UserVO userVO = new UserVO(id, name, phone, address);
+        userMap.put(id, userVO);
+        return new ResponseEntity<>(userVO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") String id) {
+        UserVO user = userMap.remove(id);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+}

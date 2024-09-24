@@ -1,0 +1,33 @@
+package com.lgy.member_jdbc_oracle.service;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.lgy.member_jdbc_oracle.dao.MemDAO;
+	
+@Service
+	public class MemLoginService implements MemService {
+
+    private final MemDAO memberDAO;
+
+    @Autowired
+    public MemLoginService(MemDAO memberDAO) {
+        this.memberDAO = memberDAO;
+    }
+
+    @Override
+    public int execute(Model model) {
+    	Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+        String id = request.getParameter("mem_uid");
+        String pw = request.getParameter("mem_pw");
+
+        return memberDAO.loginYn(id, pw);
+    }
+}
